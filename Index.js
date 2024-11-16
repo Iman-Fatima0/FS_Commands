@@ -48,11 +48,13 @@ app.patch('/book/update/:id', (req, res) => {
         else
         {
             const books=JSON.parse(data);
-            const index=books.findIndex(book=>book.id===id);
+            const index=books.findIndex(book=>book.id===parseInt(id));
             if(index > -1)
             {
+                console.log(books[index])
                 books[index] = { ...books[index], ...update };
-                fs.writeFile('example.json',JSON.stringify(books),{flag:'a'} ,(err)=>
+                console.log(books[index])
+                fs.writeFile('example.json',JSON.stringify(books) ,(err)=>
                 {
                     if(err)
                     {
